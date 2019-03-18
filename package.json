@@ -26,5 +26,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@types/webappsec-credential-management": "^0.3.10"
+  }
 }

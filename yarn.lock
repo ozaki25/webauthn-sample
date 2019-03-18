@@ -1128,6 +1128,11 @@
     "@types/unist" "*"
     "@types/vfile-message" "*"
 
+"@types/webappsec-credential-management@^0.3.10":
+  version "0.3.10"
+  resolved "https://registry.yarnpkg.com/@types/webappsec-credential-management/-/webappsec-credential-management-0.3.10.tgz#bb05afd0245382809ae291da155f46f83128f59e"
+  integrity sha512-Zs6XsEw15jqbkHiVMW3YSUq2KUpkg/lojxbcdNQAevbHwI1eQBSbw3rxiVEpwFmRsY/9YR34hPLUBU6jEB1fnA==
+
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.7.11.tgz#b988582cafbb2b095e8b556526f30c90d057cace"
@@ -8116,7 +8121,7 @@ react-dev-utils@^8.0.0:
     strip-ansi "5.0.0"
     text-table "0.2.0"
 
-react-dom@16.8.4:
+react-dom@^16.8.4:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.4.tgz#1061a8e01a2b3b0c8160037441c3bf00a0e3bc48"
   integrity sha512-Ob2wK7XG2tUDt7ps7LtLzGYYB6DXMCLj0G5fO6WeEICtT4/HdpOi7W/xLzZnR6RCG1tYza60nMdqtxzA8FaPJQ==
@@ -8185,7 +8190,7 @@ react-scripts@2.1.8:
   optionalDependencies:
     fsevents "1.2.4"
 
-react@16.8.4:
+react@^16.8.4:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.4.tgz#fdf7bd9ae53f03a9c4cd1a371432c206be1c4768"
   integrity sha512-0GQ6gFXfUH7aZcjGVymlPOASTuSjlQL4ZtVC5YKH+3JL6bBLCVO21DknzmaPlI90LN253ojj02nsapy+j7wIjg==
