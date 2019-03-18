@@ -1,3 +1,5 @@
+const domain = 'localhost';
+
 function str2buf(str: string): Uint8Array {
   return Uint8Array.from(window.atob(str), c => c.charCodeAt(0));
 }
@@ -19,7 +21,7 @@ async function runAttestation() {
   // 公開鍵生成リクエストのパラメータ
   const publicKey: PublicKeyCredentialCreationOptions = {
     challenge: challengeBuf,
-    rp: { id: 'example.com', name: 'FIDO Example Corporation' },
+    rp: { id: domain, name: 'FIDO Example Corporation' },
     user: {
       id: str2buf('MIIBkzCCATigAwIBAjCCAZMwggE4oAMCAQIwggGTMII='),
       name: 'test@example.com',
@@ -33,10 +35,10 @@ async function runAttestation() {
     const attestation = (await navigator.credentials.create({
       publicKey,
     })) as PublicKeyCredential;
-    console.log(attestation);
+    console.dir(attestation);
     return attestation.rawId;
   } catch (e) {
-    console.log(e);
+    console.dir(e);
   }
 }
 
@@ -59,12 +61,9 @@ const runAssertion = async (rawId: ArrayBuffer) => {
     console.dir(assertion);
     return true;
   } catch (e) {
-    console.log(e);
+    console.dir(e);
     return null;
   }
 };
 
-export default {
-  runAttestation,
-  runAssertion,
-};
+export { runAttestation, runAssertion };
