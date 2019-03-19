@@ -1,7 +1,10 @@
 const serverless = require('serverless-http');
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
+
+app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -13,6 +16,12 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', (req, res) => {
+  res.send('Hello');
+});
+
+app.post('/register', (req, res) => {
+  const { body } = req;
+  console.log(body);
   res.send('Hello');
 });
 
