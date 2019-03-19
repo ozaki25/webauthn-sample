@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { runAttestation, runAssertion } from './WebAuthentication';
+import api from './api';
 
 function App() {
   const [rawId, setRawId] = useState<ArrayBuffer | null>(null);
 
   const generateRawId = async () => {
     const result = await runAttestation();
-    console.log(result);
-    setRawId(result || null);
+    if (result) {
+      api.register({ body: result });
+      // setRawId(result.rawId);
+    }
   };
 
   const assertionRawId = async () => {

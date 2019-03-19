@@ -4,9 +4,10 @@ function str2buf(str: string): Uint8Array {
   return Uint8Array.from(window.atob(str), c => c.charCodeAt(0));
 }
 
-function buf2str(buf: Uint8Array): string {
-  if (buf.constructor !== Uint8Array) buf = new Uint8Array(buf);
-  return buf.map(x => Number(String.fromCharCode(x))).join('');
+function buf2str(buf: ArrayBuffer | Uint8Array): string {
+  const buffer: any =
+    buf.constructor === Uint8Array ? buf : new Uint8Array(buf);
+  return buffer.map((x: any) => Number(String.fromCharCode(x))).join('');
 }
 
 async function runAttestation() {
@@ -29,14 +30,29 @@ async function runAttestation() {
     },
     attestation: 'direct',
     pubKeyCredParams: [{ alg: -7, type: 'public-key' }],
+    timeout: 60000,
   };
   // 公開鍵生成リクエスト
   try {
     const attestation = (await navigator.credentials.create({
       publicKey,
-    })) as PublicKeyCredential;
+    })) as any; //PublicKeyCredential;
     console.dir(attestation);
-    return attestation.rawId;
+    const {
+      id,
+      rawId,
+      response: { attestationObject, clientDataJSON },
+      type,
+    } = attestation;
+    return {
+      id,
+      rawId: buf2str(rawId),
+      response: {
+        attestationObject: buf2str(attestationObject),
+        clientDataJSON: buf2str(clientDataJSON),
+      },
+      type,
+    };
   } catch (e) {
     console.dir(e);
   }
@@ -54,6 +70,7 @@ const runAssertion = async (rawId: ArrayBuffer) => {
   const publicKey: PublicKeyCredentialRequestOptions = {
     allowCredentials: [{ id: rawId, type: 'public-key' }],
     challenge: challengeBuf,
+    timeout: 60000,
   };
   // 認証リクエスト
   try {
