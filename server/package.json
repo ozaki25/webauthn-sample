@@ -1,0 +1,10 @@
+{
+  "name": "webauthn-sample-server",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.4",
+    "serverless-http": "^1.9.1"
+  },
+  "devDependencies": {}
+}
